@@ -1,6 +1,4 @@
 require "carb/service/version"
-require "carb/service/curried"
-require "carb/service/lambda"
 
 module Carb
   # Basic interface for service objects. Use rspec shared example
@@ -9,7 +7,7 @@ module Carb
   module Service
     # Invokes the service
     # @param args [Hash{Symbol => Object}] arguments used in the service
-    # @return [::Deterministic::Monad] output of the service MUST be a monad
+    # @return [::Carb::Monads::Monad] output of the service MUST be a monad
     def call(**args)
       raise NotImplementedError
     end
@@ -29,3 +27,6 @@ module Carb
     end
   end
 end
+
+require "carb/service/curried"
+require "carb/service/lambda"

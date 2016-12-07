@@ -1,8 +1,7 @@
 # carb-service
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/carb/service`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+Provides a strict interface to adhere to for service objects, offering curring
+functionalities and possibility to wrap simple lambdas.
 
 ## Installation
 
@@ -22,7 +21,70 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Just include `Carb::Service` in your class and strictly adhere to its interface
+
+```ruby
+require "carb-service"
+
+class MyService
+  include Carb::Service
+
+  def call(result: nil)
+    return Carb::Monads::Result::Failure(result) if result.nil?
+
+    Carb::Monads::Result::Success(result)
+  end
+end
+
+service = MyService.new
+service.()            # => Failure(nil)
+service.(result: 123) # => Success(123)
+```
+
+You can also _curry_ the service (supply default values for `call` args):
+
+```ruby
+curried = service.curry(result: 123)
+curried.()              # => Success(123)
+curried.(result: "foo") # => Success("foo")
+```
+
+Notice that curried services are **full fledged services**.
+You can also convert lambdas into services, the result will be automatically
+wrapped in a `Success`
+
+```ruby
+service = Carb::Service::Lambda(->(**args) { 123 })
+service.() # => Success(123)
+```
+
+Finally, a set of helper utilities for testing have been provided for `rspec`:
+
+```ruby
+require "carb-service/carb/service/rspec"
+
+describe "Yourtest" do
+  include Carb::Service::RSpec
+
+  it "is a monad" do
+    expect(Carb::Monads::Result::Success(123)).to be_a_monad
+  end
+
+  it "is not a monad" do
+    expect(123).not_to be_a_monad
+  end
+
+  # Finally, a shared test to ensure the service adheres to the interface
+  # The block requires a @service instance variable and a @success_call which is
+  # a lambda that holds a successful call to the @service#call method
+  it_behaves_like "Carb::Service" do
+    before do
+      @service      = Carb::Service::Lambda(-> { 123 })
+      @success_call = -> { @service.() }
+    end
+  end
+end
+```
 
 ## Development
 

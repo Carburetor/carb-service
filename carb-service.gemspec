@@ -9,8 +9,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Fire-Dragon-DoL"]
   spec.email         = ["francesco.belladonna@gmail.com"]
 
-  spec.summary       = %q{Interface and shared tests for carb service objects}
-  spec.description   = %q{Interface and shared tests for carb service objects}
+  spec.summary       = %q{Interface and shared tests for service objects}
+  spec.description   = %q{Interface and shared tests for service objects}
   spec.homepage      = "https://github.com/Carburetor/carb-service"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'

@@ -9,5 +9,11 @@ module Carb
     def monad?(obj)
       obj.is_a?(Monad)
     end
+
+    def monadize(obj)
+      return obj if monad?(obj)
+
+      Result::Success(obj)
+    end
   end
 end

@@ -27,4 +27,13 @@ describe Carb::Service do
     expect(curried).to be_a Carb::Service
     expect(curried).to be_a Carb::Service::Curried
   end
+
+  it "returns a lambda service" do
+    service = Carb::Service::Lambda(->(**args) {})
+
+    service.()
+
+    expect(service).to be_a Carb::Service
+    expect(service).to be_a Carb::Service::Lambda
+  end
 end

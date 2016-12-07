@@ -1,5 +1,6 @@
 require "carb/service/version"
 require "carb/service/curried"
+require "carb/service/lambda"
 
 module Carb
   # Basic interface for service objects. Use rspec shared example
@@ -19,6 +20,12 @@ module Carb
     #   args with those supplied when {#curry} was invoked
     def curry(**args)
       Curried.new(self, args)
+    end
+
+    module_function
+
+    def Lambda(callable)
+      Lambda.new(callable)
     end
   end
 end

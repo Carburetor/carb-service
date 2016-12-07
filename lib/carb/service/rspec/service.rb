@@ -1,6 +1,5 @@
 require "carb/service"
 require "rspec"
-require "deterministic"
 require "carb/service/rspec/monads"
 
 module Carb::Service

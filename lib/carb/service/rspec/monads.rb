@@ -1,6 +1,6 @@
 require "carb/service"
 require "rspec/expectations"
-require "deterministic"
+require "carb/monads"
 
 module Carb::Service
   module RSpec
@@ -8,7 +8,7 @@ module Carb::Service
 
     ::RSpec::Matchers.define :be_a_monad do
       match do |actual|
-        actual.is_a?(::Deterministic::Monad)
+        actual.is_a?(::Carb::Monads::Monad)
       end
     end
   end

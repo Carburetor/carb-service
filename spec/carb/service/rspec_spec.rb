@@ -1,5 +1,5 @@
 require "spec_helper"
-require "deterministic"
+require "carb/monads"
 require "carb/service"
 require "carb/service/rspec"
 

@@ -1,8 +1,18 @@
+require "spec_helper"
+require "carb/monads"
 require "carb/service/curried"
+require "carb/service/rspec/service"
 
 describe Carb::Service::Curried do
   before do
-    @callable = spy("Callable", call: nil)
+    @callable = spy("Callable", call: ::Carb::Monads::Result::Success(true))
+  end
+
+  it_behaves_like "Carb::Service" do
+    before do
+      @service      = Carb::Service::Curried.new(@callable, foo: "bar")
+      @success_call = -> { @callable.call }
+    end
   end
 
   it "calls the stored service with args from initialization" do

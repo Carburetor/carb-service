@@ -1,4 +1,3 @@
-require "deterministic"
 require "carb/service"
 
 raise "RSpec required to include use shared examples" unless defined?(RSpec)

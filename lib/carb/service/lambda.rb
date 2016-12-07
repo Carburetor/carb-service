@@ -1,4 +1,5 @@
 require "carb/service"
+require "carb/monads"
 
 module Carb::Service
   class Lambda
@@ -6,17 +7,26 @@ module Carb::Service
 
     private
 
-    attr_reader :block
+    attr_reader :callable
 
     public
 
-    def initialize(&block)
-      @block = block
+    # @param callable [::Lambda]
+    def initialize(callable)
+      @callable = callable
     end
 
+    # @return [::Carb::Monads::Monad]
     def call(**args)
-      result = block.call(args)
+      result = callable.(args)
 
+      monadize(result)
+    end
+
+    protected
+
+    def monadize(result)
+      ::Carb::Monads.monadize(result)
     end
   end
 end

@@ -7,10 +7,6 @@ describe Carb::Service do
       include Carb::Service
     end
     @service = @klass.new
-    @caller  = @klass.new
-
-    def @caller.call(**args)
-    end
   end
 
   it "has a version number" do
@@ -26,7 +22,7 @@ describe Carb::Service do
   end
 
   it "can be curried" do
-    curried = @caller.curry(foo: "bar")
+    curried = @service.curry(foo: "bar")
 
     expect(curried).to be_a Carb::Service
     expect(curried).to be_a Carb::Service::Curried

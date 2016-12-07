@@ -24,4 +24,11 @@ describe Carb::Service do
   it "accepts named args when called" do
     expect{@service.(named: "arg")}.to raise_error NotImplementedError
   end
+
+  it "can be curried" do
+    curried = @caller.curry(foo: "bar")
+
+    expect(curried).to be_a Carb::Service
+    expect(curried).to be_a Carb::Service::Curried
+  end
 end

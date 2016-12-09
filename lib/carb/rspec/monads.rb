@@ -1,9 +1,9 @@
-require "carb/service"
+require "carb-core"
 require "rspec/expectations"
 require "carb/monads"
 
-module Carb::Service
-  module RSpec
+module Carb::RSpec
+  module Monads
     extend ::RSpec::Matchers::DSL
 
     ::RSpec::Matchers.define :be_a_monad do

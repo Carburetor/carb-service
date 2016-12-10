@@ -7,7 +7,8 @@ require "carb/service/version"
 module Carb::Service
   # Invokes the service
   # @param args [Hash{Symbol => Object}] arguments used in the service
-  # @return [::Carb::Monads::Monad] output of the service MUST be a monad
+  # @return [::Carb::Monads::Either, ::Carb::Monads::Maybe, ::Carb::Monads::Try,
+  #   ::Carb::Monads::Monad] output of the service MUST be an Either monad
   def call(**args)
     raise NotImplementedError
   end

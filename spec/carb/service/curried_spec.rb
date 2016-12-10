@@ -7,7 +7,7 @@ describe Carb::Service::Curried do
   include Carb::RSpec::Service
 
   before do
-    @callable = spy("Callable", call: ::Carb::Monads::Result::Success(true))
+    @callable = spy("Callable", call: ::Carb::Monads::Right(true))
   end
 
   it_behaves_like "Carb::Service" do

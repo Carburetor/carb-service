@@ -16,7 +16,8 @@ module Carb::Service
       @callable = callable
     end
 
-    # @return [::Carb::Monads::Monad]
+    # @return [::Carb::Monads::Either, ::Carb::Monads::Maybe,
+    #   ::Carb::Monads::Try, ::Carb::Monads::Monad]
     def call(**args)
       result = callable.(args)
 

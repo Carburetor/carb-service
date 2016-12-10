@@ -11,7 +11,7 @@ describe Carb::RSpec::Service do
       include Carb::Service
 
       def call(**args)
-        Carb::Monads::Result::Success(123)
+        Carb::Monads.monadize(123)
       end
     end
     @service = @klass.new

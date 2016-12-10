@@ -9,12 +9,12 @@ module Carb::Monads
     # Must be included for new monad types which are considered successful, like
     # Right, Some and Success
     module Success
+      include Monad
     end
   end
 
   Types = [
     Monad,
-    Monad::Success,
     Dry::Monads::Maybe,
     Dry::Monads::Either,
     Dry::Monads::Try

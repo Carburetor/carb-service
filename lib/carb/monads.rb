@@ -3,6 +3,7 @@ require "dry-monads"
 
 module Carb::Monads
   extend Dry::Monads
+  extend Dry::Monads::Try::Mixin
 
   # Must be included for new monad types created to be identified by {.monad?}
   module Monad

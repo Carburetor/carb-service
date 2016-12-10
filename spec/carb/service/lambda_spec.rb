@@ -1,9 +1,11 @@
 require "spec_helper"
 require "carb/service/lambda"
-require "carb/service/rspec/service"
+require "carb/rspec/service"
+require "carb/rspec/monads"
 
 describe Carb::Service::Lambda do
-  include Carb::Service::RSpec
+  include Carb::RSpec::Service
+  include Carb::RSpec::Monads
 
   before do
     @lambda = ->(**args) {}

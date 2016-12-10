@@ -1,9 +1,11 @@
 require "spec_helper"
 require "carb/monads"
 require "carb/service/curried"
-require "carb/service/rspec/service"
+require "carb/rspec/service"
 
 describe Carb::Service::Curried do
+  include Carb::RSpec::Service
+
   before do
     @callable = spy("Callable", call: ::Carb::Monads::Result::Success(true))
   end

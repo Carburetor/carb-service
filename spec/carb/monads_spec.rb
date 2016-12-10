@@ -1,9 +1,9 @@
 require "spec_helper"
 require "carb/monads"
-require "carb/service/rspec/monads"
+require "carb/rspec/monads"
 
 describe Carb::Monads do
-  include Carb::Service::RSpec
+  include Carb::RSpec::Monads
 
   it "identifies a monad" do
     monad = Carb::Monads::Result::Success(true)

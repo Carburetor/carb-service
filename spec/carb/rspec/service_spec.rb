@@ -1,17 +1,17 @@
 require "spec_helper"
 require "carb/monads"
 require "carb/service"
-require "carb/service/rspec"
+require "carb/rspec/service"
 
-describe Carb::Service::RSpec do
-  include Carb::Service::RSpec
+describe Carb::RSpec::Service do
+  include Carb::RSpec::Service
 
   before do
     @klass = Class.new do
       include Carb::Service
 
       def call(**args)
-        Deterministic::Result::Success(123)
+        Carb::Monads::Result::Success(123)
       end
     end
     @service = @klass.new

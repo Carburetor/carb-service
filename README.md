@@ -61,10 +61,12 @@ service.() # => Success(123)
 Finally, a set of helper utilities for testing have been provided for `rspec`:
 
 ```ruby
-require "carb-service/carb/service/rspec"
+require "carb/rspec/service"
+require "carb/rspec/monads"
 
 describe "Yourtest" do
-  include Carb::Service::RSpec
+  include Carb::RSpec::Service
+  include Carb::RSpec::Monads
 
   it "is a monad" do
     expect(Carb::Monads::Result::Success(123)).to be_a_monad

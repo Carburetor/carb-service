@@ -11,5 +11,11 @@ module Carb::RSpec
         ::Carb::Monads.monad?(actual)
       end
     end
+
+    ::RSpec::Matchers.define :be_a_success_monad do
+      match do |actual|
+        ::Carb::Monads.success_monad?(actual)
+      end
+    end
   end
 end

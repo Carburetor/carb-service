@@ -42,4 +42,35 @@ describe Carb::Monads do
 
     expect(monad).to be_a_monad
   end
+
+  it "identifies a success monad" do
+    monad = Carb::Monads.monadize(123)
+
+    is_success_monad = Carb::Monads.success_monad?(monad)
+
+    expect(is_success_monad).to be true
+  end
+
+  it "identifies a failure monad" do
+    monad = Carb::Monads::Left(123)
+
+    is_success_monad = Carb::Monads.success_monad?(monad)
+
+    expect(is_success_monad).to be false
+  end
+
+  it "raises when trying to detect a success monad on non-monad" do
+    not_monad = 123
+
+    expect{Carb::Monads.success_monad?(not_monad)}.to raise_error TypeError
+  end
+
+  it "identifies a new class as success monad if it includes Success module" do
+    monad_class = Class.new { include Carb::Monads::Monad::Success }
+
+    monad = monad_class.new
+
+    expect(monad).to be_a_monad
+    expect(monad).to be_a_success_monad
+  end
 end

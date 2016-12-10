@@ -30,9 +30,9 @@ class MyService
   include Carb::Service
 
   def call(result: nil)
-    return Carb::Monads::Result::Failure(result) if result.nil?
+    return Carb::Monads::Left(result) if result.nil?
 
-    Carb::Monads::Result::Success(result)
+    Carb::Monads::Right(result)
   end
 end
 
@@ -58,6 +58,28 @@ service = Carb::Service::Lambda(->(**args) { 123 })
 service.() # => Success(123)
 ```
 
+A success matcher is provided to move forward when a monad is successful or
+stop:
+
+```ruby
+require "carb/monads"
+require "carb/monads/success_matcher"
+
+result = nil
+monad  = Carb::Monads::Right(123)
+
+Carb::Monads::SuccessMatcher.(monad) do |match|
+  match.success { |value| result = value }
+  match.failure { |_| raise "Error" }
+end
+
+result # => 123
+```
+
+Check [dry-monads](http://dry-rb.org/gems/dry-monads/) and
+[dry-matcher](http://dry-rb.org/gems/dry-matcher/) if you want to know more.
+
+
 Finally, a set of helper utilities for testing have been provided for `rspec`:
 
 ```ruby
@@ -69,11 +91,19 @@ describe "Yourtest" do
   include Carb::RSpec::Monads
 
   it "is a monad" do
-    expect(Carb::Monads::Result::Success(123)).to be_a_monad
+    expect(Carb::Monads::Right(123)).to be_a_monad
   end
 
   it "is not a monad" do
     expect(123).not_to be_a_monad
+  end
+
+  it "is a success monad" do
+    expect(Carb::Monads::Right(123)).to be_a_success_monad
+  end
+
+  it "is a failure monad" do
+    expect(Carb::Monads::Left(123)).not_to be_a_success_monad
   end
 
   # Finally, a shared test to ensure the service adheres to the interface
@@ -96,5 +126,5 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/carb-service.
+Bug reports and pull requests are welcome on GitHub at https://github.com/Carburetor/carb-service.
 

@@ -49,3 +49,5 @@ module Carb::Monads
     Right(obj)
   end
 end
+
+require "carb/monads/success_matcher"

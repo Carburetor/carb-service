@@ -1,4 +1,4 @@
-require "carb-core"
+require "carb"
 require "dry-monads"
 
 module Carb::Monads

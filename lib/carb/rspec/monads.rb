@@ -1,4 +1,4 @@
-require "carb-core"
+require "carb"
 require "rspec/expectations"
 require "carb/monads"
 

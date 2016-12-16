@@ -1,4 +1,4 @@
-require "carb-core"
+require "carb"
 require "carb/service/version"
 
 # Basic interface for service objects. Use rspec shared example

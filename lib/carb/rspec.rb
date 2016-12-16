@@ -1,4 +1,4 @@
-require "carb-core"
+require "carb"
 
 raise "RSpec required to include use shared examples" unless defined?(RSpec)
 

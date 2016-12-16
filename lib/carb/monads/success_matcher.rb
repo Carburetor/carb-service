@@ -1,4 +1,3 @@
-require "carb-core"
 require "dry-matcher"
 require "carb/monads"
 

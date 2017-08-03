@@ -11,7 +11,8 @@ module Carb::Service
 
     public
 
-    def initialize(service, **curried_args)
+    # TODO: Store is hash and curry everything properly
+    def initialize(service, curried_args, is_hash)
       @service      = service
       @curried_args = curried_args
     end

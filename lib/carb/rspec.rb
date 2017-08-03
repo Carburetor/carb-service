@@ -6,4 +6,3 @@ module Carb::RSpec
 end
 
 require "carb/rspec/service"
-require "carb/rspec/monads"

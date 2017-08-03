@@ -1,5 +1,4 @@
 require "carb/service"
-require "carb/monads"
 
 module Carb::Service
   class Lambda

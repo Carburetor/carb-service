@@ -1,6 +1,5 @@
 require "carb"
 require "rspec"
-require "carb/rspec/monads"
 
 module Carb::RSpec
   module Service
@@ -10,8 +9,6 @@ module Carb::RSpec
     # - Requires the instance variable {@success_call} to be set to a method
     #   that succcessfully invokes {#call} for the service
     shared_examples "Carb::Service" do
-      include Carb::RSpec::Monads
-
       it "has arity 1 or variable on call method" do
         call = @service.method(:call)
 

@@ -1,5 +1,4 @@
 require "spec_helper"
-require "carb/monads"
 require "carb/service/curried"
 require "carb/rspec/service"
 
